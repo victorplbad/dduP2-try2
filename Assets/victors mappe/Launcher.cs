@@ -5,12 +5,13 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class TestConnect : MonoBehaviourPunCallbacks
+public class Launcher : MonoBehaviourPunCallbacks
 {
 
 
     [SerializeField] TMP_InputField roomNameInputField;
     [SerializeField] TMP_Text errorText;
+    [SerializeField] TMP_Text roomNameText;
 
     void Start()
     {
@@ -36,6 +37,7 @@ public class TestConnect : MonoBehaviourPunCallbacks
 
         MenuManger.instance.OpenMenu("title");
         Debug.Log("Joined Lobby");
+        
 
 
     }
@@ -70,10 +72,11 @@ public class TestConnect : MonoBehaviourPunCallbacks
     {
 
         MenuManger.instance.OpenMenu("room");
-
+        roomNameText.text = PhotonNetwork.CurrentRoom.Name;
 
 
     }
+
 
     public override void OnCreateRoomFailed(short returnCode, string message)
     {
@@ -84,5 +87,18 @@ public class TestConnect : MonoBehaviourPunCallbacks
 
     }
 
+
+    public void LeaveRoom()
+
+    {
+        PhotonNetwork.LeaveRoom();
+        MenuManger.instance.OpenMenu("loading");
+
+    }
+
+    public override void OnLeftRoom()
+    {
+        MenuManger.instance.OpenMenu("title");
+    }
 
 }
