@@ -373,6 +373,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 132146768}
+  - component: {fileID: 132146769}
   m_Layer: 5
   m_Name: FindRoomMenu
   m_TagString: Untagged
@@ -402,6 +403,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 561}
   m_SizeDelta: {x: 700, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &132146769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 132146767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69615befb17d2804bae38294e9cfd756, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  menuName: find room
+  open: 0
 --- !u!1 &144437431
 GameObject:
   m_ObjectHideFlags: 0
@@ -547,6 +562,7 @@ GameObject:
   - component: {fileID: 157965578}
   - component: {fileID: 157965580}
   - component: {fileID: 157965579}
+  - component: {fileID: 157965581}
   m_Layer: 5
   m_Name: RoomListContent
   m_TagString: Untagged
@@ -611,6 +627,32 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 157965577}
   m_CullTransparentMesh: 1
+--- !u!114 &157965581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 157965577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 20
+    m_Right: 20
+    m_Top: 20
+    m_Bottom: 20
+  m_ChildAlignment: 0
+  m_Spacing: 20
+  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandHeight: 0
+  m_ChildControlWidth: 1
+  m_ChildControlHeight: 0
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
+  m_ReverseArrangement: 0
 --- !u!1 &178078408
 GameObject:
   m_ObjectHideFlags: 0
@@ -1510,6 +1552,7 @@ MonoBehaviour:
   - {fileID: 1526349485}
   - {fileID: 563123016}
   - {fileID: 1625807955}
+  - {fileID: 132146769}
 --- !u!114 &441015546
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1525,6 +1568,8 @@ MonoBehaviour:
   roomNameInputField: {fileID: 1552279571}
   errorText: {fileID: 332491612}
   roomNameText: {fileID: 2136314028}
+  roomListConetent: {fileID: 157965578}
+  roomListItemPrefab: {fileID: 4684240447699127233, guid: 7ee71a76a22eebd49a0b75917e304cf4, type: 3}
 --- !u!1 &447921880
 GameObject:
   m_ObjectHideFlags: 0
@@ -2088,7 +2133,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1162753070}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 441015545}
+        m_TargetAssemblyTypeName: MenuManger, Assembly-CSharp
+        m_MethodName: OpenMenu
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 132146769}
+          m_ObjectArgumentAssemblyTypeName: Menu, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1162753070
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2665,10 +2722,10 @@ MonoBehaviour:
       - m_Target: {fileID: 441015545}
         m_TargetAssemblyTypeName: MenuManger, Assembly-CSharp
         m_MethodName: OpenMenu
-        m_Mode: 5
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 1178732164}
+          m_ObjectArgumentAssemblyTypeName: Menu, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -3120,6 +3177,8 @@ MonoBehaviour:
   roomNameInputField: {fileID: 0}
   errorText: {fileID: 0}
   roomNameText: {fileID: 0}
+  roomListConetent: {fileID: 0}
+  roomListItemPrefab: {fileID: 0}
 --- !u!1 &1468113683
 GameObject:
   m_ObjectHideFlags: 0
@@ -3322,7 +3381,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1526349485
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3682,7 +3741,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1623730619
 RectTransform:
   m_ObjectHideFlags: 0

@@ -7,11 +7,19 @@ using UnityEngine;
 
 public class Launcher : MonoBehaviourPunCallbacks
 {
-
+    public static Launcher Instance;
 
     [SerializeField] TMP_InputField roomNameInputField;
     [SerializeField] TMP_Text errorText;
     [SerializeField] TMP_Text roomNameText;
+    [SerializeField] Transform roomListConetent;
+    [SerializeField] GameObject roomListItemPrefab;
+
+
+     void Awake()
+    {
+        Instance = this;
+    }
 
     void Start()
     {
@@ -82,6 +90,7 @@ public class Launcher : MonoBehaviourPunCallbacks
     {
 
         errorText.text = "Room Creation Failed" + message;
+        Debug.LogError("Room Creation failed " + message);
         MenuManger.instance.OpenMenu("error");
 
 
@@ -96,9 +105,40 @@ public class Launcher : MonoBehaviourPunCallbacks
 
     }
 
+    public void JoinRoom(RoomInfo info) 
+    {
+
+        PhotonNetwork.JoinRoom(info.Name);
+        MenuManger.instance.OpenMenu("loading");
+    }
+
+
+
     public override void OnLeftRoom()
     {
         MenuManger.instance.OpenMenu("title");
     }
+
+
+
+    public override void OnRoomListUpdate(List<RoomInfo> roomList)
+    {
+
+        foreach (Transform trans in roomListConetent)
+        {
+            Destroy(trans.gameObject);
+        }
+
+        for (int i = 0; i < roomList.Count; i++)
+        {
+
+            Instantiate(roomListItemPrefab, roomListConetent).GetComponent<RoomListItem>().Setup(roomList[i]);
+
+
+        }
+
+    }
+
+
 
 }
