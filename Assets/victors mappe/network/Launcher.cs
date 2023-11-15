@@ -17,6 +17,8 @@ public class Launcher : MonoBehaviourPunCallbacks
     [SerializeField] GameObject roomListItemPrefab;
     [SerializeField] Transform playerListConetent;
     [SerializeField] GameObject playerListItemPrefab;
+    [SerializeField] GameObject startGameButton;
+
 
 
      void Awake()
@@ -39,6 +41,7 @@ public class Launcher : MonoBehaviourPunCallbacks
         print("Connect to Master Server.");
 
         PhotonNetwork.JoinLobby();
+        PhotonNetwork.AutomaticallySyncScene = true;
 
     }
 
@@ -79,7 +82,7 @@ public class Launcher : MonoBehaviourPunCallbacks
         MenuManger.instance.OpenMenu("loading");
 
     }
- 
+
     public override void OnJoinedRoom()
     {
 
@@ -88,14 +91,26 @@ public class Launcher : MonoBehaviourPunCallbacks
 
         Player[] players = PhotonNetwork.PlayerList;
 
+        foreach (Transform child in playerListConetent)
+        {
+            Destroy(child.gameObject);
+        }
+
+
         for (int i = 0; i < players.Count(); i++)
         {
             Instantiate(playerListItemPrefab, playerListConetent).GetComponent<PlayerListItem>().SetUp(players[i]);
 
         }
 
+        startGameButton.SetActive(PhotonNetwork.IsMasterClient);
+
     }
 
+    public override void OnMasterClientSwitched(Player newMasterClient)
+    {
+        startGameButton.SetActive(PhotonNetwork.IsMasterClient);
+    }
 
     public override void OnCreateRoomFailed(short returnCode, string message)
     {
@@ -106,6 +121,14 @@ public class Launcher : MonoBehaviourPunCallbacks
 
 
     }
+
+    public void StartGame()
+    {
+
+        PhotonNetwork.LoadLevel(1);
+
+    }
+
 
 
     public void LeaveRoom()
@@ -121,6 +144,9 @@ public class Launcher : MonoBehaviourPunCallbacks
 
         PhotonNetwork.JoinRoom(info.Name);
         MenuManger.instance.OpenMenu("loading");
+
+       
+
     }
 
 
@@ -140,9 +166,11 @@ public class Launcher : MonoBehaviourPunCallbacks
             Destroy(trans.gameObject);
         }
 
-        for (int i = 0; i < roomList.Count; i++)
+        for (int i = 0; i < roomList.Count;i++)
         {
-
+            if (roomList[i].RemovedFromList)
+                continue;
+            
             Instantiate(roomListItemPrefab, roomListConetent).GetComponent<RoomListItem>().Setup(roomList[i]);
 
 
