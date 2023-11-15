@@ -79,7 +79,7 @@ public class Launcher : MonoBehaviourPunCallbacks
         MenuManger.instance.OpenMenu("loading");
 
     }
-
+ 
     public override void OnJoinedRoom()
     {
 
