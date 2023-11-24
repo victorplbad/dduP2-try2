@@ -10,9 +10,9 @@ public class PlayerManager : MonoBehaviour
 
     PhotonView PV;
 
-     void Awake()
+    void Awake()
     {
-        PV = GetComponent<PhotonView>();    
+        PV = GetComponent<PhotonView>();
     }
 
 
@@ -25,16 +25,32 @@ public class PlayerManager : MonoBehaviour
         if (PV.IsMine)
         {
             CreateController();
+
+
         }
 
     }
 
-  void CreateController()
+    void CreateController()
     {
 
-       // cutout // PhotonNetwork.Instantiate(Path.Combine("PhotonPrebas", "PlayerController"),Vector3.zero, Quaternion.identity);
-        PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerUiDemo"), Vector3.zero, Quaternion.identity);
-        Debug.Log("testing");
+        // cutout // PhotonNetwork.Instantiate(Path.Combine("PhotonPrebas", "PlayerController"),Vector3.zero, Quaternion.identity);
+        GameObject g = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerUiDemo"), new Vector3(-25, 45, -20), Quaternion.Euler(45, 0, 0));
+
+        
+
+        
+
+
 
     }
+
+
+
+    
+
+
+
+
+
 }

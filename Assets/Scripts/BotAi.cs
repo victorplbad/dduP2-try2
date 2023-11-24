@@ -35,7 +35,7 @@ public class BotAi : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
     }
 
-    public void Update()
+    public void FixedUpdate()
     {
         //Check for sight and attack range
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
@@ -45,7 +45,17 @@ public class BotAi : MonoBehaviour
         if (playerInSightRange && !playerInAttackRange) ChasePlayer();
         if (playerInAttackRange && playerInSightRange) AttackPlayer();
     }
+   /* public  void Update() // køre på fixed update
+    {
+        //Check for sight and attack range
+        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
+        playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
 
+        if (!playerInSightRange && !playerInAttackRange) Patroling();
+        if (playerInSightRange && !playerInAttackRange) ChasePlayer();
+        if (playerInAttackRange && playerInSightRange) AttackPlayer();
+    }
+   */
     private void Patroling()
     {
         if (!walkPointSet) SearchWalkPoint();
