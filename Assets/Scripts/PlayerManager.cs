@@ -1,0 +1,40 @@
+using Photon.Pun;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using Photon.Pun;
+using System.IO;
+
+public class PlayerManager : MonoBehaviour
+{
+
+    PhotonView PV;
+
+     void Awake()
+    {
+        PV = GetComponent<PhotonView>();    
+    }
+
+
+
+
+    // Start is called before the first frame update
+    void Start()
+    {
+
+        if (PV.IsMine)
+        {
+            CreateController();
+        }
+
+    }
+
+  void CreateController()
+    {
+
+       // cutout // PhotonNetwork.Instantiate(Path.Combine("PhotonPrebas", "PlayerController"),Vector3.zero, Quaternion.identity);
+        PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerUiDemo"), Vector3.zero, Quaternion.identity);
+        Debug.Log("testing");
+
+    }
+}
