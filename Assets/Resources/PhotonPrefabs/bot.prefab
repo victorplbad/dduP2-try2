@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 8034880283369972351}
   - component: {fileID: 4251367444403597894}
   - component: {fileID: 2287112972077249011}
-  - component: {fileID: 3639286646053988194}
   - component: {fileID: -4424755573459316324}
   m_Layer: 6
   m_Name: bot
@@ -32,7 +31,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9021227765397795992}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.40821788, y: 0.23456968, z: -0.10938163, w: 0.8754261}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.816987, y: 7.800145, z: 5.239692}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -147,7 +146,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 8034880283369972351}
-  player: {fileID: 0}
+  player: {fileID: 8155066445797537154, guid: f4106bf39b554aa4ab7c5f0a4f1d14b7, type: 3}
   whatIsGround:
     serializedVersion: 2
     m_Bits: 128
@@ -158,7 +157,7 @@ MonoBehaviour:
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointRange: 5
   timeBetweenAttacks: 0.5
-  projectile: {fileID: 2710229378741494209, guid: c3a371d278bf06b45a08255c86cf1a92, type: 3}
+  projectile: {fileID: 3480536803013285547, guid: 66de55eeca64af9449a5c3afe2f5f4b1, type: 3}
   sightRange: 20
   attackRange: 12
   playerInSightRange: 1
@@ -190,28 +189,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &3639286646053988194
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9021227765397795992}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObservedComponentsFoldoutOpen: 1
-  Group: 0
-  prefixField: -1
-  Synchronization: 3
-  OwnershipTransfer: 0
-  observableSearch: 2
-  ObservedComponents: []
-  sceneViewId: 0
-  InstantiationId: 0
-  isRuntimeInstantiated: 0
 --- !u!114 &-4424755573459316324
 MonoBehaviour:
   m_ObjectHideFlags: 0

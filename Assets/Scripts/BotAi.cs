@@ -1,3 +1,4 @@
+using Photon.Realtime;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -30,11 +31,13 @@ public class BotAi : MonoBehaviour
 
     public void Awake()
     {
-        player = GameObject.Find("player").transform; ////////////////////////////////////////////////
+        //player = GameObject.Find("player").transform; ////////////////////////////////////////////////
+        
+        
        
         agent = GetComponent<NavMeshAgent>();
     }
-
+    //*
     public void FixedUpdate()
     {
         //Check for sight and attack range
@@ -45,8 +48,12 @@ public class BotAi : MonoBehaviour
         if (playerInSightRange && !playerInAttackRange) ChasePlayer();
         if (playerInAttackRange && playerInSightRange) AttackPlayer();
     }
-   /* public  void Update() // køre på fixed update
+    //*/
+
+    /*
+    public  void Update() // køre på fixed update
     {
+        
         //Check for sight and attack range
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
